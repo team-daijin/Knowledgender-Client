@@ -1,14 +1,13 @@
 import React from "react";
-import * as S from "./signup.style.ts";
+import * as S from "./signup.style.tsx";
 import Image from "../../assets/image/signinImg.svg";
 import Logo from "../../assets/image/signinLogo.svg";
 function Signup({ children }: React.PropsWithChildren) {
   return (
     <>
-      <S.SigninPageWrap>
-        <S.SigninWrap>
+      <S.SignupPageWrap>
+        <S.SignupWrap>
           <S.InputWrap>
-            <img src={Logo} alt="" height={"10%"}></img>
             <S.InputComponent>
               <S.InputText>아이디</S.InputText>
               <S.Input placeholder="아이디를 입력해주세요"></S.Input>
@@ -30,10 +29,10 @@ function Signup({ children }: React.PropsWithChildren) {
           </S.InputWrap>
           {/* <S.Image src={Image} alt=""></S.Image> */}
           <img src={Image} alt=""></img>
-        </S.SigninWrap>
-      </S.SigninPageWrap>
+        </S.SignupWrap>
+      </S.SignupPageWrap>
     </>
   );
 }
 
-export default Signin;
+export default Signup;

@@ -11,7 +11,7 @@ interface ButtonProps {
   variant?: "primary" | "secondary";
   onClick?: () => void;
 }
-export const SigninPageWrap = styled.div`
+export const SignupPageWrap = styled.div`
   background-color: white;
   width: 100vw;
   height: 100vh;
@@ -21,7 +21,7 @@ export const SigninPageWrap = styled.div`
   justify-content: center;
 `;
 
-export const SigninWrap = styled.div`
+export const SignupWrap = styled.div`
   width: 60vw;
   height: 60vh;
 
