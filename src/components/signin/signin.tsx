@@ -11,14 +11,14 @@ function Signin({ children }: React.PropsWithChildren) {
             <img src={Logo} alt="" height={"10%"}></img>
             <S.InputComponent>
               <S.InputText>아이디</S.InputText>
-              <S.Input></S.Input>
+              <S.Input placeholder="아이디를 입력해주세요"></S.Input>
               <S.InputErrorText>
                 아이디 또는 비밀번호가 잘못되었습니다.
               </S.InputErrorText>
             </S.InputComponent>
             <S.InputComponent>
               <S.InputText>비밀번호</S.InputText>
-              <S.Input></S.Input>
+              <S.Input placeholder="비밀번호를 입력해주세요"></S.Input>
               <S.InputErrorText>
                 아이디 또는 비밀번호가 잘못되었습니다.
               </S.InputErrorText>

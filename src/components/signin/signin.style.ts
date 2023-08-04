@@ -1,4 +1,3 @@
-import { Placeholder } from "react-bootstrap";
 import styled from "styled-components";
 
 interface InputProps {
@@ -50,10 +49,6 @@ export const Input = styled.input<InputProps>`
   transition: border-color 0.2s;
   width: 20vw;
 
-  ::placeholder {
-    color: #aaa;
-  }
-
   &:focus {
     border-color: #7b39d1;
   }
@@ -90,9 +85,7 @@ export const SigninButton = styled.button<ButtonProps>`
   }
 `;
 
-export const SignupButton = styled.button<ButtonProps>.attrs((place{
-  placeholderTextColor:"#72777a",
-})`
+export const SignupButton = styled.button<ButtonProps>`
   padding: 10px 20px;
   font-size: 16px;
   font-family: "pretendard";
