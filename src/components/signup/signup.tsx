@@ -36,4 +36,4 @@ function Signup({ children }: React.PropsWithChildren) {
   );
 }
 
-export default Signin;
+export default Signup;
