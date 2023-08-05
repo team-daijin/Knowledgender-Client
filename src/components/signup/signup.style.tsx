@@ -11,7 +11,13 @@ interface ButtonProps {
   variant?: "primary" | "secondary";
   onClick?: () => void;
 }
-export const SigninPageWrap = styled.div`
+
+interface ErrorProps {
+  color?: string;
+  text: string;
+}
+
+export const SignupPageWrap = styled.div`
   background-color: white;
   width: 100vw;
   height: 100vh;
@@ -21,17 +27,29 @@ export const SigninPageWrap = styled.div`
   justify-content: center;
 `;
 
-export const SigninWrap = styled.div`
+export const SignupWrap = styled.div`
   width: 60vw;
-  height: 60vh;
+  height: 75vh;
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
-
+export const SignupTitleWrap = styled.div`
+  height: 4em;
+`;
+export const SignupTitle = styled.div`
+  font-size: 1.5em;
+  font-family: "pretendard";
+  font-weight: 600;
+`;
+export const SignupSubtitle = styled.div`
+  font-size: 1em;
+  font-family: "pretendard";
+  font-weight: 400;
+`;
 export const InputWrap = styled.div`
-  height: 60vh;
+  height: 70vh;
   width: 35vw;
 
   display: flex;
@@ -48,7 +66,7 @@ export const Input = styled.input<InputProps>`
   outline: none;
   transition: border-color 0.2s;
   width: 20vw;
-
+  <height:3></height:3>vh;
   &:focus {
     border-color: #7b39d1;
   }
@@ -120,7 +138,7 @@ export const SignupButton = styled.button<ButtonProps>`
 `;
 
 export const InputComponent = styled.div`
-  height: 10vh;
+  height: 8vh;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -140,4 +158,12 @@ export const ButtonWrap = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+`;
+export const Select = styled.select`
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 200px;
+  font-family: "pretendard";
 `;
