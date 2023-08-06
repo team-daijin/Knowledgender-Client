@@ -38,7 +38,11 @@ const Writing = () => {
     }
   };
 
-  const postData = () => {
+  const handlePostSubmit = () => {
+    if (!title || !category || !content || !image) {
+      alert("모든 필드를 작성해주세요.");
+      return;
+    }
     const formData = new FormData();
     formData.append("title", title);
     formData.append("category", category);
@@ -58,7 +62,7 @@ const Writing = () => {
         alert("글 게시에 성공하셨습니다!");
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error("Error:\n", error);
         alert("문제가 발생하였습니다. 다시 시도해주세요");
       });
   };
@@ -73,40 +77,69 @@ const Writing = () => {
 
   return (
     <>
-      <div>
-        <img src={Logo} alt="Error" />
-      </div>
-      <div>
-        <h1>게시물 작성</h1>
-        <h5>게시할 글 정보를 작성해 주세요.</h5>
-      </div>
-      <div>
-        <div>
-          <h6>글 제목</h6>
-          <input type="text" value={title} onChange={handleTitleChange} />
-        </div>
-        <div>
-          <h6>카테고리</h6>
-          <select value={category} onChange={handleCategoryChange}>
-            {validCategories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <h6>글 내용</h6>
-          <textarea value={content} onChange={handleContentChange} />
-        </div>
-        <div>
-          <h6>자료첨부</h6>
-          <input type="file" onChange={handleImageChange} />
-        </div>
-        <button type="submit" onClick={postData}>
+      <S.topIntroBox>
+        <S.logoImg>
+          <img src={Logo} alt="Error" />
+        </S.logoImg>
+        <S.titleBox>
+          <S.title1>게시물 작성</S.title1>
+          <S.title2>게시할 글 정보를 작성해 주세요.</S.title2>
+        </S.titleBox>
+      </S.topIntroBox>
+      <S.mainContainerItem>
+        <S.mainContainerBox>
+          <div>
+            <S.inputContentTitle>글 제목</S.inputContentTitle>
+            <S.inputContentBox
+              placeholder="글 제목을 입력해주세요"
+              type="text"
+              value={title}
+              onChange={handleTitleChange}
+            ></S.inputContentBox>
+          </div>
+          <div>
+            <S.inputContentTitle>
+              <pre> 카테고리</pre>
+            </S.inputContentTitle>
+            <S.selectContentBox
+              value={category}
+              onChange={handleCategoryChange}
+            >
+              {validCategories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </S.selectContentBox>
+          </div>
+          <div>
+            <S.inputContentTitle>글 내용</S.inputContentTitle>
+            <S.textareaContentBox
+              placeholder="글 내용을 입력해주세요"
+              value={content}
+              onChange={handleContentChange}
+            />
+          </div>
+          <div>
+            <S.inputContentTitle>
+              <pre> 자료첨부</pre>
+            </S.inputContentTitle>
+            <S.fileContentBoxLabel>
+              선택하기
+              <S.fileContentBoxInput
+                type="file"
+                onChange={handleImageChange}
+                accept=".jpg, .jpeg, .png"
+              />
+            </S.fileContentBoxLabel>
+          </div>
+        </S.mainContainerBox>
+      </S.mainContainerItem>
+      <S.buttonContentBox>
+        <S.submitBnt type="submit" onClick={handlePostSubmit}>
           게시하기
-        </button>
-      </div>
+        </S.submitBnt>
+      </S.buttonContentBox>
     </>
   );
 };

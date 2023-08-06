@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SigninPage from "../pages/signin.tsx";
-import WritingPage from "../components/writing/writng.tsx";
+import WritingPage from "../pages/writing.tsx";
 import SignupPage from "../pages/signup.tsx";
 const Router = () => {
   return (
