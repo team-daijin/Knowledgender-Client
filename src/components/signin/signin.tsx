@@ -5,22 +5,23 @@ import Logo from "../../assets/image/signinLogo.svg";
 import api from "../../api/customAxios.tsx";
 import { useNavigate } from "react-router-dom";
 
+interface User {
+  accountId: String;
+  password: String;
+}
+
 function Signin({ children }: React.PropsWithChildren) {
   const navigate = useNavigate();
-  interface User {
-    id: string;
-    password: string;
-  }
 
   const [user, setUser] = useState<User>({
-    id: "",
+    accountId: "",
     password: "",
   });
 
   const onSubmit = () => {
     api
       .post("/api/auth/login", {
-        id: user.id,
+        id: user.accountId,
         password: user.password,
       })
       .then((res: any) => {
@@ -68,7 +69,7 @@ function Signin({ children }: React.PropsWithChildren) {
               </S.InputErrorText>
             </S.InputComponent>
             <S.ButtonWrap>
-              <S.SigninButton>로그인</S.SigninButton>
+              <S.SigninButton onClick={onSubmit}>로그인</S.SigninButton>
               <S.SignupButton>회원가입</S.SignupButton>
             </S.ButtonWrap>
           </S.InputWrap>
