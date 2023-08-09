@@ -1,11 +1,7 @@
 export interface WritingCardType {
   title: string;
-  category:
-    | "GENDERISSUES"
-    | "SEXUALASSAULTCOPE"
-    | "BODY"
-    | "RELATIONSHIP"
-    | "MY";
+  category: "HEART" | "CRIM" | "BODY" | "RELATIONSHIP" | "EQUALITY";
+
   content: string;
   image: File | null;
 }

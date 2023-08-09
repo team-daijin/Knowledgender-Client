@@ -7,7 +7,7 @@ import api from "../../api/customAxios.tsx";
 const Writing = () => {
   const [postCardData, setPostCardData] = useState<WritingCardType>({
     title: "",
-    category: "GENDERISSUES",
+    category: "HEART",
     content: "",
     image: null,
   });
@@ -17,11 +17,10 @@ const Writing = () => {
   const [warningVisible, setWarningVisible] = useState({
     btnEvent: false,
     titleEvent: false,
-    categoryEvent: false,
     contentEvent: false,
   });
 
-  const { btnEvent, titleEvent, categoryEvent, contentEvent } = warningVisible;
+  const { btnEvent, titleEvent, contentEvent } = warningVisible;
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPostCardData({ ...postCardData, title: event.target.value });
@@ -36,10 +35,6 @@ const Writing = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setPostCardData({ ...postCardData, category: event.target.value });
-    setWarningVisible((warningVisible) => ({
-      ...warningVisible,
-      categoryEvent: true,
-    }));
   };
 
   const handleContentChange = (
@@ -65,12 +60,8 @@ const Writing = () => {
       ...warningVisible,
       btnEvent: true,
     }));
-    if (!title || !category || !content || !image || image) {
+    if (!title || !category || !content || !image) {
       alert("모든 필드를 작성해주세요.");
-      setWarningVisible((warningVisible) => ({
-        ...warningVisible,
-        btnEvent: true,
-      }));
       return;
     }
 
@@ -82,8 +73,15 @@ const Writing = () => {
     api
       .post("/api/card/", formData)
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
         alert("작성 글 게시에 성공하셨습니다.");
+        setPostCardData({
+          ...postCardData,
+          title: "",
+          category: "HEART",
+          content: "",
+          image: null,
+        });
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -91,13 +89,7 @@ const Writing = () => {
       });
   };
 
-  const validCategories = [
-    "GENDERISSUES",
-    "SEXUALASSAULTCOPE",
-    "BODY",
-    "RELATIONSHIP",
-    "MY",
-  ];
+  const validCategories = ["HEART", "CRIM", "BODY", "RELATIONSHIP", "EQUALITY"];
 
   return (
     <>
@@ -120,7 +112,7 @@ const Writing = () => {
               value={title}
               onChange={handleTitleChange}
             ></S.inputContentBox>
-            {!contentEvent && btnEvent && (
+            {!titleEvent && btnEvent && (
               <div
                 style={{
                   color: "red",
@@ -147,18 +139,6 @@ const Writing = () => {
                 </option>
               ))}
             </S.selectContentBox>
-            {!categoryEvent && btnEvent && (
-              <div
-                style={{
-                  color: "red",
-                  fontSize: "13px",
-                  marginLeft: "-60%",
-                  marginTop: "-2%",
-                }}
-              >
-                글 카테고리를 선택해주세요
-              </div>
-            )}
           </div>
           <div>
             <S.inputContentTitle>글 내용</S.inputContentTitle>
