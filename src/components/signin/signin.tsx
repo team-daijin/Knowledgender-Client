@@ -24,8 +24,20 @@ function Signin({ children }: React.PropsWithChildren) {
         accountId: user.accountId,
         password: user.password,
       })
+<<<<<<< Updated upstream
       .then((res: any) => {
         handleTokenSave(res.data.accessToken);
+=======
+      .then(async (res: any) => {
+        alert("로그인에 성공하셨습니다");
+        // localStorage.setItem("accessToken", res.data.accessToken);
+        const accessToken = res; // Access Token 추출
+        // Access Token을 로컬 스토리지나 쿠키 등에 저장
+        localStorage.setItem("accessToken", res.data.accessToken);
+        console.log(localStorage.setItem("accessToken", accessToken));
+
+        navigate("/");
+>>>>>>> Stashed changes
       })
       .catch(() => {
         alert("로그인 실패");
