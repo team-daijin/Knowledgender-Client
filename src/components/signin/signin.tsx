@@ -29,8 +29,9 @@ function Signin({ children }: React.PropsWithChildren) {
         localStorage.setItem("accessToken", res.data.accessToken);
         navigate("/");
       })
-      .catch(() => {
+      .catch((err: any) => {
         alert("로그인 실패");
+        console.log(err);
       });
   };
 
