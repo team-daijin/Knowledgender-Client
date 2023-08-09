@@ -25,13 +25,18 @@ function Signin({ children }: React.PropsWithChildren) {
         password: user.password,
       })
       .then((res: any) => {
-        alert("로그인에 성공하셨습니다");
-        localStorage.setItem("accessToken", res.data.accessToken);
-        navigate("/");
+        handleTokenSave(res.data.accessToken);
       })
       .catch(() => {
         alert("로그인 실패");
       });
+
+    const handleTokenSave = (token: string) => {
+      alert("로그인에 성공하셨습니다");
+      localStorage.setItem("accessToken", token);
+      console.log("토큰" + token);
+      navigate("/writing");
+    };
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {

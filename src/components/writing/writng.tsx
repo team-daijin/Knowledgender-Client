@@ -60,11 +60,12 @@ const Writing = () => {
   };
 
   const handlePostSubmit = () => {
+    console.log(localStorage.getItem("login-token"));
     setWarningVisible((warningVisible) => ({
       ...warningVisible,
       btnEvent: true,
     }));
-    if (!title || !category || !content || !image) {
+    if (!title || !category || !content || !image || image) {
       alert("모든 필드를 작성해주세요.");
       setWarningVisible((warningVisible) => ({
         ...warningVisible,
@@ -72,13 +73,14 @@ const Writing = () => {
       }));
       return;
     }
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("category", category);
     formData.append("content", content);
     formData.append("image", image);
     api
-      .post("/api/card", formData)
+      .post("/api/card/", formData)
       .then((response) => {
         console.log(response.data);
         alert("작성 글 게시에 성공하셨습니다.");
@@ -150,7 +152,7 @@ const Writing = () => {
                 style={{
                   color: "red",
                   fontSize: "13px",
-                  marginLeft: "-64%",
+                  marginLeft: "-60%",
                   marginTop: "-2%",
                 }}
               >
