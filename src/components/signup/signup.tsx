@@ -99,10 +99,10 @@ function Signup({ children }: React.PropsWithChildren) {
                 //@ts-expect-error
                 onChange={onChange}
               >
-                <option value="의사">의사</option>
-                <option value="상담사">상담사</option>
-                <option value="약사">약사</option>
-                <option value="성교육전문가">성교육전문가</option>
+                <option value="DOCTER">의사</option>
+                <option value="COUNSELOR">상담사</option>
+                <option value="PHARMACIST">약사</option>
+                <option value="ETC">성교육전문가</option>
               </S.Select>
             </S.InputComponent>
             <S.ButtonWrap>
@@ -116,5 +116,4 @@ function Signup({ children }: React.PropsWithChildren) {
     </>
   );
 }
-
 export default Signup;

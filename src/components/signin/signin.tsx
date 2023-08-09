@@ -21,7 +21,7 @@ function Signin({ children }: React.PropsWithChildren) {
   const onSubmit = () => {
     api
       .post("/api/auth/login", {
-        id: user.accountId,
+        accountId: user.accountId,
         password: user.password,
       })
       .then((res: any) => {
@@ -48,8 +48,8 @@ function Signin({ children }: React.PropsWithChildren) {
               <S.InputText>아이디</S.InputText>
               <S.Input
                 placeholder="아이디를 입력해주세요"
-                name="id"
-                value={user.id}
+                name="accountId"
+                type="text"
                 onChange={onChange}
               ></S.Input>
               <S.InputErrorText>
@@ -61,7 +61,7 @@ function Signin({ children }: React.PropsWithChildren) {
               <S.Input
                 placeholder="비밀번호를 입력해주세요"
                 name="password"
-                value={user.password}
+                type="password"
                 onChange={onChange}
               ></S.Input>
               <S.InputErrorText>
@@ -70,7 +70,13 @@ function Signin({ children }: React.PropsWithChildren) {
             </S.InputComponent>
             <S.ButtonWrap>
               <S.SigninButton onClick={onSubmit}>로그인</S.SigninButton>
-              <S.SignupButton>회원가입</S.SignupButton>
+              <S.SignupButton
+                onClick={() => {
+                  navigate("/signup");
+                }}
+              >
+                회원가입
+              </S.SignupButton>
             </S.ButtonWrap>
           </S.InputWrap>
           {/* <S.Image src={Image} alt=""></S.Image> */}
