@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from "react"; // Removed unused useEffect import
 import * as S from "./writing.style";
 import Logo from "../../assets/image/signinLogo.svg";
 import { WritingCardType } from "../../types/writing/writing.type";
-
-const ACCESS_TOKEN = "your_access_token_here";
 
 const Writing = () => {
   const [postCardData, setPostCardData] = useState<WritingCardType>({
@@ -49,7 +47,10 @@ const Writing = () => {
     formData.append("content", content);
     formData.append("image", image);
 
-    fetch("/api/card/", {
+    const ACCESS_TOKEN = localStorage.getItem("login-token");
+
+    fetch("http://52.78.246.108:8080/api/card/", {
+      // Fixed the URL structure
       method: "POST",
       headers: {
         Authorization: `Bearer ${ACCESS_TOKEN}`,
