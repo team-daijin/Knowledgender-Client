@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState } from "react"; // Removed unused useEffect import
 import * as S from "./writing.style";
 import Logo from "../../assets/image/signinLogo.svg";
 import { WritingCardType } from "../../types/writing/writing.type";
-
-const ACCESS_TOKEN = "your_access_token_here";
+import api from "../../api/customAxios.tsx";
 
 const Writing = () => {
   const [postCardData, setPostCardData] = useState<WritingCardType>({
@@ -41,6 +40,7 @@ const Writing = () => {
   const handlePostSubmit = () => {
     if (!title || !category || !content || !image) {
       alert("모든 필드를 작성해주세요.");
+      console.log(localStorage.getItem("login-token"));
       return;
     }
     const formData = new FormData();
@@ -48,22 +48,15 @@ const Writing = () => {
     formData.append("category", category);
     formData.append("content", content);
     formData.append("image", image);
-
-    fetch("/api/card/", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${ACCESS_TOKEN}`,
-      },
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        alert("글 게시에 성공하셨습니다!");
+    api
+      .post("/api/card", formData)
+      .then((response) => {
+        console.log(response.data);
+        alert("작성 글 게시에 성공하셨습니다.");
       })
       .catch((error) => {
-        console.error("Error:\n", error);
-        alert("문제가 발생하였습니다. 다시 시도해주세요");
+        console.error("Error:", error);
+        alert("작성 글 게시에 실패하셨습니다\n다시 시도해주세요.");
       });
   };
 
