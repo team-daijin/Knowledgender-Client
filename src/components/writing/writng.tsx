@@ -14,20 +14,42 @@ const Writing = () => {
 
   const { title, category, content, image } = postCardData;
 
+  const [warningVisible, setWarningVisible] = useState({
+    btnEvent: false,
+    titleEvent: false,
+    categoryEvent: false,
+    contentEvent: false,
+  });
+
+  const { btnEvent, titleEvent, categoryEvent, contentEvent } = warningVisible;
+
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPostCardData({ ...postCardData, title: event.target.value });
+
+    setWarningVisible((warningVisible) => ({
+      ...warningVisible,
+      titleEvent: true,
+    }));
   };
 
   const handleCategoryChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setPostCardData({ ...postCardData, category: event.target.value });
+    setWarningVisible((warningVisible) => ({
+      ...warningVisible,
+      categoryEvent: true,
+    }));
   };
 
   const handleContentChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     setPostCardData({ ...postCardData, content: event.target.value });
+    setWarningVisible((warningVisible) => ({
+      ...warningVisible,
+      contentEvent: true,
+    }));
   };
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,9 +60,16 @@ const Writing = () => {
   };
 
   const handlePostSubmit = () => {
+    setWarningVisible((warningVisible) => ({
+      ...warningVisible,
+      btnEvent: true,
+    }));
     if (!title || !category || !content || !image) {
       alert("모든 필드를 작성해주세요.");
-      console.log(localStorage.getItem("login-token"));
+      setWarningVisible((warningVisible) => ({
+        ...warningVisible,
+        btnEvent: true,
+      }));
       return;
     }
     const formData = new FormData();
@@ -89,6 +118,18 @@ const Writing = () => {
               value={title}
               onChange={handleTitleChange}
             ></S.inputContentBox>
+            {!contentEvent && btnEvent && (
+              <div
+                style={{
+                  color: "red",
+                  fontSize: "13px",
+                  marginLeft: "-64%",
+                  marginTop: "-2%",
+                }}
+              >
+                글 제목을 입력해주세요
+              </div>
+            )}
           </div>
           <div>
             <S.inputContentTitle>
@@ -104,6 +145,18 @@ const Writing = () => {
                 </option>
               ))}
             </S.selectContentBox>
+            {!categoryEvent && btnEvent && (
+              <div
+                style={{
+                  color: "red",
+                  fontSize: "13px",
+                  marginLeft: "-64%",
+                  marginTop: "-2%",
+                }}
+              >
+                글 카테고리를 선택해주세요
+              </div>
+            )}
           </div>
           <div>
             <S.inputContentTitle>글 내용</S.inputContentTitle>
@@ -112,6 +165,18 @@ const Writing = () => {
               value={content}
               onChange={handleContentChange}
             />
+            {!contentEvent && btnEvent && (
+              <div
+                style={{
+                  color: "red",
+                  fontSize: "13px",
+                  marginLeft: "-64%",
+                  marginTop: "-2%",
+                }}
+              >
+                글 내용을 입력해주세요
+              </div>
+            )}
           </div>
           <div>
             <S.inputContentTitle>
