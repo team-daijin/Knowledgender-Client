@@ -60,7 +60,7 @@ const Writing = () => {
       ...warningVisible,
       btnEvent: true,
     }));
-    if (!title || !category || !content || !image) {
+    if (!title || !category || !content || !image || image) {
       alert("모든 필드를 작성해주세요.");
       return;
     }
