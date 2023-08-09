@@ -43,7 +43,7 @@ function Signup({ children }: React.PropsWithChildren) {
         job: register.job,
       })
       .then((res: any) => {
-        alert("회원가입에 성공하셨습니다");
+        alert("회원가입에 성공하셨습니다 ");
         console.log(register);
         navigate("/signin");
       })
