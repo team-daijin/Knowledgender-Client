@@ -18,28 +18,19 @@ function Signin({ children }: React.PropsWithChildren) {
     password: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState(false);
+
   const onSubmit = () => {
     api
       .post("/api/auth/login", {
         accountId: user.accountId,
         password: user.password,
       })
-<<<<<<< Updated upstream
       .then((res: any) => {
         handleTokenSave(res.data.accessToken);
-=======
-      .then(async (res: any) => {
-        alert("로그인에 성공하셨습니다");
-        // localStorage.setItem("accessToken", res.data.accessToken);
-        const accessToken = res; // Access Token 추출
-        // Access Token을 로컬 스토리지나 쿠키 등에 저장
-        localStorage.setItem("accessToken", res.data.accessToken);
-        console.log(localStorage.setItem("accessToken", accessToken));
-
-        navigate("/");
->>>>>>> Stashed changes
       })
       .catch(() => {
+        setErrorMessage(true);
         alert("로그인 실패");
       });
 
@@ -69,9 +60,11 @@ function Signin({ children }: React.PropsWithChildren) {
                 type="text"
                 onChange={onChange}
               ></S.Input>
-              <S.InputErrorText>
-                아이디 또는 비밀번호가 잘못되었습니다.
-              </S.InputErrorText>
+              {errorMessage && (
+                <S.InputErrorText>
+                  아이디 또는 비밀번호가 잘못되었습니다.
+                </S.InputErrorText>
+              )}
             </S.InputComponent>
             <S.InputComponent>
               <S.InputText>비밀번호</S.InputText>
@@ -81,9 +74,11 @@ function Signin({ children }: React.PropsWithChildren) {
                 type="password"
                 onChange={onChange}
               ></S.Input>
-              <S.InputErrorText>
-                아이디 또는 비밀번호가 잘못되었습니다.
-              </S.InputErrorText>
+              {errorMessage && (
+                <S.InputErrorText>
+                  아이디 또는 비밀번호가 잘못되었습니다.
+                </S.InputErrorText>
+              )}
             </S.InputComponent>
             <S.ButtonWrap>
               <S.SigninButton onClick={onSubmit}>로그인</S.SigninButton>
