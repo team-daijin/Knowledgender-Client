@@ -7,7 +7,7 @@ import api from "../../api/customAxios.tsx";
 const Writing = () => {
   const [postCardData, setPostCardData] = useState<WritingCardType>({
     title: "",
-    category: "HEART",
+    category: "",
     content: "",
     image: null,
   });
@@ -85,41 +85,40 @@ const Writing = () => {
         messageEvent: true,
       }));
       return;
-    } else {
-      const formData = new FormData();
-      formData.append("title", title);
-      formData.append("category", category);
-      formData.append("content", content);
-      formData.append("image", image);
-      api
-        .post("/api/card/", formData)
-        .then((response) => {
-          console.log(response);
-          alert("작성 글 게시에 성공하셨습니다.");
-          setPostCardData({
-            ...postCardData,
-            title: "",
-            category: "HEART",
-            content: "",
-            image: null,
-          });
-          setWarningVisible({
-            ...warningVisible,
-            btnEvent: false,
-            titleEvent: false,
-            contentEvent: false,
-            imageEvent: false,
-            messageEvent: false,
-          });
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("작성 글 게시에 실패하셨습니다.\n다시 시도해주세요.");
-        });
     }
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("category", category);
+    formData.append("content", content);
+    formData.append("image", image);
+    api
+      .post("/api/card/", formData)
+      .then((response) => {
+        console.log(response);
+        alert("작성 글 게시에 성공하셨습니다.");
+        setPostCardData({
+          ...postCardData,
+          title: "",
+          category: "",
+          content: "",
+          image: null,
+        });
+        setWarningVisible({
+          ...warningVisible,
+          btnEvent: false,
+          titleEvent: false,
+          contentEvent: false,
+          imageEvent: false,
+          messageEvent: false,
+        });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("작성 글 게시에 실패하셨습니다.\n다시 시도해주세요.");
+      });
   };
 
-  const validCategories = ["HEART", "CRIM", "BODY", "RELATIONSHIP", "EQUALITY"];
+  const validCategories = ["없음", "마음", "신체", "범죄", "관계", "평등"];
 
   return (
     <>
@@ -163,9 +162,9 @@ const Writing = () => {
               value={category}
               onChange={handleCategoryChange}
             >
-              {validCategories.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
+              {validCategories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
                 </option>
               ))}
             </S.selectContentBox>
