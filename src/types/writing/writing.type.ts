@@ -3,5 +3,5 @@ export interface WritingCardType {
   category: "HEART" | "CRIM" | "BODY" | "RELATIONSHIP" | "EQUALITY";
 
   content: string;
-  image: File | null;
+  image: null | File;
 }

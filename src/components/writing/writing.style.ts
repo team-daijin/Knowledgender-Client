@@ -133,12 +133,14 @@ export const fileContentBoxLabel = styled.label`
   cursor: pointer;
   border-radius: 5px;
   border: 1px solid #d8dae0;
-  background: #f0f0f0;
   color: gray;
   padding: 8px 20px;
   font-size: 14px;
   font-weight: 600;
   margin-left: -69.5%;
+
+  background-color: ${(props) => (props.isExistence ? "#7B39D1" : "#F0F0F0")};
+  color: ${(props) => (props.isExistence ? "white" : "gray")};
 `;
 
 export const fileContentBoxInput = styled.input`
@@ -158,12 +160,13 @@ export const submitBnt = styled.button`
   gap: 12px;
   border-radius: 6px;
   border: none;
-  background: var(--main-purple-darkest, #6823c2);
-  color: #fff;
   text-align: center;
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+
+  background-color: ${(props) => (props.isActivate ? "#6823c2" : "#F0F0F0")};
+  color: ${(props) => (props.isActivate ? "white" : "gray")};
 `;
