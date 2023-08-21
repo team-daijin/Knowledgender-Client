@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-
+import logo from "../../../assets/image/signinImg.svg";
 function User() {
   return (
     <>
-          <UserWrap>
-              <UserImg src ></UserImg>
-        <UserName>김예림</UserName>
-        <UserDetail>
-          <p>17세 | 여자</p>
-          <UserTag>관계</UserTag>
-        </UserDetail>
+      <UserWrap>
+        <UserImg src={logo} alt=""></UserImg>
+        <UserInfo>
+          <UserName>김예림</UserName>
+          <UserDetail>
+            <p>17세 | 여자</p>
+            <UserTag>관계</UserTag>
+          </UserDetail>
+        </UserInfo>
       </UserWrap>
     </>
   );
@@ -20,7 +22,17 @@ const UserWrap = styled.div`
   width: 20vw;
   height: 10vh;
 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 0.8vw;
+  padding-right: 0.8vw;
   background-color: #ffffff;
+  transition: 500ms;
+  &:hover {
+    background-color: #f2f2f2;
+  }
 `;
 
 const UserDetail = styled.div`
@@ -32,6 +44,8 @@ const UserDetail = styled.div`
   p {
     font-family: "pretendard";
     font-size: 1.2em;
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
 `;
 
@@ -51,17 +65,27 @@ const UserTag = styled.div`
   text-align: center;
   justify-content: center;
 
-  margin-left: 5vw;
+  margin-left: 4vw;
 `;
 
 const UserName = styled.div`
   font-family: Pretendard;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: black;
+  font-weight: 600;
 `;
 
-const UserImg = styled.image`
+const UserImg = styled.img`
   border-radius: 100%;
+  width: 4rem;
+  height: 4rem;
 `;
 
+const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  margin-left: 1vw;
+`;
 export default User;
