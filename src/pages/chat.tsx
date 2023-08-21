@@ -1,14 +1,14 @@
 import React from "react";
-import Writing from "../components/writing/writng";
+import Chat from "../components/chat/chat";
 import Header from "../components/header/header";
 
-function WritingPage() {
+function ChatPage() {
   return (
     <>
       <Header />
-      <Writing />
+      <Chat />
     </>
   );
 }
 
-export default WritingPage;
+export default ChatPage;
