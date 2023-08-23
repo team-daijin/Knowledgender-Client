@@ -1,15 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import send from "../../../assets/image/send.svg";
+import Message from "../message/message";
 
 function Input() {
   return (
     <>
       <ChatAreaWrap>
+        <MessageWrap>
+          <Message></Message>
+        </MessageWrap>
         <InputWrap>
           <ChatInput></ChatInput>
           <SendBtn>
-            <img src={send} alt="" style={{ width: 30 }}></img>
+            <img src={send} alt="" style={{ width: 25 }}></img>
           </SendBtn>
         </InputWrap>
       </ChatAreaWrap>
@@ -23,10 +27,15 @@ const ChatAreaWrap = styled.div`
   margin: 5vw;
 
   display: flex;
+  flex-direction: column;
   align-items: flex-end;
   background-color: white;
 `;
 
+const MessageWrap = styled.div`
+  width: 65vw;
+  height: 70vh;
+`;
 const InputWrap = styled.div`
   width: 70vw;
   height: 10vh;
