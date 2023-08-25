@@ -15,10 +15,10 @@ const Message: React.FC<ChatMessageProps> = ({ text, sender }) => {
     // </div>
     <>
       <ChatWrap>
-        <MessageWrap>안녕하세요ddd</MessageWrap>
+        <MessageWrap>{text}</MessageWrap>
         <ProfileWrap>
           <ProfileImg src={logo} alt=""></ProfileImg>
-          <ProfileName>김예림</ProfileName>
+          <ProfileName>{sender}</ProfileName>
         </ProfileWrap>
       </ChatWrap>
     </>
@@ -29,7 +29,7 @@ const ChatWrap = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 `;
 const MessageWrap = styled.div`
   background-color: #f8f8f8;

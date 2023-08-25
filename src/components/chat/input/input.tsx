@@ -23,22 +23,54 @@ function Input() {
     });
   };
 
+  useEffect(() => {
+    socket.on("chat message", (message: ChatMessageProps) => {
+      setMessages((prevMessages) => [...prevMessages, message]);
+    });
+  }, []);
+
+  const sendMessage = () => {
+    if (messageText.trim() === "") {
+      return;
+    }
+    const newMessage = { text: messageText, sender: "user" };
+    socket.emit("chat message", newMessage);
+    setMessages([...messages, newMessage]);
+    setMessageText("");
+  };
+
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      sendMessage();
+    }
+  };
+
   return (
     <>
       <ChatAreaWrap>
         <MessageWrap>
           {/* <Message></Message> */}
-          {messages.map(() => {
+          {messages.map((message, index) => {
             return (
               <>
-                <Message></Message>
+                <Message
+                  key={index}
+                  text={message.text}
+                  sender={message.sender}
+                ></Message>
               </>
             );
           })}
         </MessageWrap>
         <InputWrap>
-          <ChatInput onChange={onChange}></ChatInput>
-          <SendBtn>
+          <ChatInput
+            type="text"
+            placeholder="메시지를 입력하세요"
+            value={messageText}
+            onChange={(e) => setMessageText(e.target.value)}
+            onKeyPress={handleKeyPress}
+          ></ChatInput>
+          <SendBtn onClick={sendMessage}>
             <img src={send} alt="" style={{ width: 25 }}></img>
           </SendBtn>
         </InputWrap>
