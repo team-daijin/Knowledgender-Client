@@ -1,17 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import send from "../../../assets/image/send.svg";
 import Message from "../message/message";
+import io, { Socket } from "socket.io-client";
+
+interface ChatMessageProps {
+  text: string;
+  sender: string;
+}
+
+const socket: Socket = io("http://localhost:5000"); // Socket.io 서버 주소로 변경
 
 function Input() {
+  const [messages, setMessages] = useState<ChatMessageProps[]>([]);
+  const [messageText, setMessageText] = useState<string>("");
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
+    setMessages({
+      ...messages, // 기존의 input 객체를 복사한 뒤
+      [name]: value, // name 키를 가진 값을 value 로 설정
+    });
+  };
+
   return (
     <>
       <ChatAreaWrap>
         <MessageWrap>
-          <Message></Message>
+          {/* <Message></Message> */}
+          {messages.map(() => {
+            return (
+              <>
+                <Message></Message>
+              </>
+            );
+          })}
         </MessageWrap>
         <InputWrap>
-          <ChatInput></ChatInput>
+          <ChatInput onChange={onChange}></ChatInput>
           <SendBtn>
             <img src={send} alt="" style={{ width: 25 }}></img>
           </SendBtn>

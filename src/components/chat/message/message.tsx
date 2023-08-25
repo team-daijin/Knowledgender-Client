@@ -1,8 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import logo from "../../../assets/image/signinImg.svg";
-function Message() {
+
+interface ChatMessageProps {
+  text: string;
+  sender: string;
+}
+
+const Message: React.FC<ChatMessageProps> = ({ text, sender }) => {
   return (
+    // <div className={`message ${sender === "user" ? "user" : "other"}`}>
+    //   <span className="sender">{sender}</span>
+    //   <p className="text">{text}</p>
+    // </div>
     <>
       <ChatWrap>
         <MessageWrap>안녕하세요ddd</MessageWrap>
@@ -13,7 +23,7 @@ function Message() {
       </ChatWrap>
     </>
   );
-}
+};
 
 const ChatWrap = styled.div`
   display: flex;
