@@ -1,6 +1,6 @@
 export interface WritingCardType {
-  title: String;
-  category: String;
-  content: String;
+  title: string;
+  category: string;
+  content: string;
   image: File | null;
 }
