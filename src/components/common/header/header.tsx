@@ -1,6 +1,6 @@
 import React from "react";
 import * as H from "./header.style";
-import logo from "../../assets/image/logo.svg";
+import logo from "../../../assets/image/logo.svg";
 import { useNavigate } from "react-router-dom";
 function Header() {
   const navigate = useNavigate();
@@ -8,7 +8,14 @@ function Header() {
   return (
     <>
       <H.HeaderWrap>
-        <img src={logo} alt=""></img>
+        <img
+          src={logo}
+          alt="error"
+          style={{ width: "120px" }}
+          onClick={() => {
+            navigate("/");
+          }}
+        ></img>
         <H.NavTextWrap>
           <H.NavText
             onClick={() => {
