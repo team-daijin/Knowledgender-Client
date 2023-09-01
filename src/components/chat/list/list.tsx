@@ -6,12 +6,8 @@ function List() {
   return (
     <>
       <ListWrap>
-        {sample.map((item: Number) => {
-          return (
-            <>
-              <User />
-            </>
-          );
+        {sample.map((item: Number, index) => {
+          return <User key={index} />;
         })}
       </ListWrap>
     </>

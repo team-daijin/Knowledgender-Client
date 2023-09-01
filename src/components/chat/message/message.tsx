@@ -3,11 +3,12 @@ import styled from "styled-components";
 import logo from "../../../assets/image/signinImg.svg";
 
 interface ChatMessageProps {
-  text: string;
-  sender: string;
+  message: string;
+  // sender: string;
+  roomId: string;
 }
 
-const Message: React.FC<ChatMessageProps> = ({ text, sender }) => {
+const Message: React.FC<ChatMessageProps> = ({ message, roomId }) => {
   return (
     // <div className={`message ${sender === "user" ? "user" : "other"}`}>
     //   <span className="sender">{sender}</span>
@@ -15,10 +16,10 @@ const Message: React.FC<ChatMessageProps> = ({ text, sender }) => {
     // </div>
     <>
       <ChatWrap>
-        <MessageWrap>{text}</MessageWrap>
+        <MessageWrap>{message}</MessageWrap>
         <ProfileWrap>
           <ProfileImg src={logo} alt=""></ProfileImg>
-          <ProfileName>{sender}</ProfileName>
+          <ProfileName>{roomId}</ProfileName>
         </ProfileWrap>
       </ChatWrap>
     </>

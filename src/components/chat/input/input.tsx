@@ -1,31 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, KeyboardEventHandler } from "react";
 import styled from "styled-components";
 import send from "../../../assets/image/send.svg";
 import Message from "../message/message";
 import io, { Socket } from "socket.io-client";
 
 interface ChatMessageProps {
-  text: string;
-  sender: string;
+  message: string;
+  // sender: string;
+  roomId: string;
 }
 
-const socket: Socket = io("http://localhost:5000"); // Socket.io 서버 주소로 변경
+const socket = io("ws://52.78.246.108:8085", {
+  transports: ["websocket"],
+  cors: { origin: "*" },
+  query: { authorization: `Bearer ${localStorage.getItem("accessToken")}` },
+});
 
 function Input() {
   const [messages, setMessages] = useState<ChatMessageProps[]>([]);
   const [messageText, setMessageText] = useState<string>("");
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = e.target;
-    setMessages({
-      ...messages, // 기존의 input 객체를 복사한 뒤
-      [name]: value, // name 키를 가진 값을 value 로 설정
-    });
-  };
+  const [room, setRoom] = useState<string>("");
 
   useEffect(() => {
-    socket.on("chat message", (message: ChatMessageProps) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
+    socket.on("room-join", () => {
+      console.log("connection server");
+    });
+    socket.on("message", (Message: ChatMessageProps) => {
+      setMessages((prevMessages) => [...prevMessages, Message]);
     });
   }, []);
 
@@ -33,13 +34,17 @@ function Input() {
     if (messageText.trim() === "") {
       return;
     }
-    const newMessage = { text: messageText, sender: "user" };
-    socket.emit("chat message", newMessage);
+    // const newMessage = { text: messageText, sender: "user" };
+    const newMessage = {
+      message: messageText,
+      roomId: "64e9911cef13f60a337dc6be",
+    };
+    socket.emit("message", newMessage);
     setMessages([...messages, newMessage]);
     setMessageText("");
   };
 
-  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyPress = (e: KeyboardEvent) => {
     if (e.key === "Enter") {
       sendMessage();
     }
@@ -52,13 +57,12 @@ function Input() {
           {/* <Message></Message> */}
           {messages.map((message, index) => {
             return (
-              <>
-                <Message
-                  key={index}
-                  text={message.text}
-                  sender={message.sender}
-                ></Message>
-              </>
+              <Message
+                key={index}
+                message={message.message}
+                // sender={message.sender}
+                roomId={message.roomId}
+              ></Message>
             );
           })}
         </MessageWrap>
