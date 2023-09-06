@@ -19,6 +19,13 @@ function Header() {
           </H.NavText>
           <H.NavText
             onClick={() => {
+              navigate("/counseling");
+            }}
+          >
+            상담소 등록
+          </H.NavText>
+          <H.NavText
+            onClick={() => {
               navigate("/chat");
             }}
           >
