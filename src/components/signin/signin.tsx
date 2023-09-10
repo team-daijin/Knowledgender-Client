@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as S from "./signin.style.ts";
 import Image from "../../assets/image/signinImg.svg";
 import Logo from "../../assets/image/signinLogo.svg";
-import api from "../../api/customAxios.tsx";
+import api from "../../api/SigninCustomAxios.tsx";
 import { useNavigate } from "react-router-dom";
 
 interface User {

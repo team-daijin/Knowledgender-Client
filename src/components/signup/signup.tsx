@@ -4,7 +4,7 @@ import Logo from "../../assets/image/signupLogo.svg";
 import Image from "../../assets/image/signinImg.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import api from "../../api/customAxios.tsx";
+import api from "../../api/SigninCustomAxios.tsx";
 enum job {
   DOCTER,
   COUNSELOR,
@@ -50,6 +50,7 @@ function Signup({ children }: React.PropsWithChildren) {
       .catch(() => {
         alert("회원가입 실패");
       });
+    console.log(register);
   };
   return (
     <>

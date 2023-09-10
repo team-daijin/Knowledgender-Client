@@ -24,7 +24,7 @@ const Writing = () => {
     isFormValid,
     handlePostSubmit,
   } = useWritingForm();
-  const { title, category, content, image } = postCardData;
+  const { title, category, content, thumbnail, image } = postCardData;
 
   return (
     <S.WholeWritingPageContainer>
@@ -72,6 +72,21 @@ const Writing = () => {
             </S.SelectCategoriesBox>
 
             <S.FileUploadButtonBox>
+              <S.WritingItemTitle>배너첨부</S.WritingItemTitle>
+              <S.FileContentBoxLabel
+                isImageFileActivate={thumbnail !== null}
+                isSubmitButtonActivate={isFormValid}
+              >
+                선택하기
+                <S.FileContentBoxInput
+                  type="file"
+                  name="thumbnail"
+                  accept=".jpg, .jpeg, .png"
+                  onChange={handleElementChange}
+                />
+              </S.FileContentBoxLabel>
+            </S.FileUploadButtonBox>
+            <S.FileUploadButtonBox>
               <S.WritingItemTitle>자료첨부</S.WritingItemTitle>
               <S.FileContentBoxLabel
                 isImageFileActivate={image !== null}
@@ -105,7 +120,7 @@ const Writing = () => {
               type="button"
               onClick={handlePostSubmit}
               isImageFileActivate={image !== null}
-              isSubmitButtonActivate={isFormValid}
+              ButtonActivate={isFormValid}
             >
               게시하기
             </S.SubmitBnt>

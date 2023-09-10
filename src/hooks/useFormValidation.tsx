@@ -7,6 +7,7 @@ export const useWritingForm = () => {
     title: "",
     category: "",
     content: "",
+    thumbnail: null,
     image: null,
   });
 
@@ -42,11 +43,13 @@ export const useWritingForm = () => {
       if (postCardData.image instanceof File) {
         formData.append("image", postCardData.image);
       }
-
+      if (postCardData.thumbnail instanceof File) {
+        formData.append("thumbnail", postCardData.thumbnail);
+      }
       formData.append("title", postCardData.title);
       formData.append("category", postCardData.category);
       formData.append("content", postCardData.content);
-
+      console.log(formData);
       apiEndpoint
         .post("/api/card/", formData)
         .then((response) => {
@@ -56,6 +59,7 @@ export const useWritingForm = () => {
             title: "",
             category: "",
             content: "",
+            thumbnail: null,
             image: null,
           });
         })
