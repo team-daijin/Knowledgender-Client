@@ -40,16 +40,23 @@ export const useWritingForm = () => {
     const newErrorMessages = { ...errorMessages };
 
     if (isFormValid) {
-      if (postCardData.image instanceof File) {
-        formData.append("image", postCardData.image);
-      }
-      if (postCardData.thumbnail instanceof File) {
-        formData.append("thumbnail", postCardData.thumbnail);
-      }
       formData.append("title", postCardData.title);
       formData.append("category", postCardData.category);
       formData.append("content", postCardData.content);
-      console.log(formData);
+      if (postCardData.thumbnail instanceof File) {
+        formData.append("thumbnail", postCardData.thumbnail);
+      }
+      if (postCardData.image instanceof File) {
+        formData.append("image", postCardData.image);
+      }
+      for (let key of formData.keys()) {
+        console.log("key", key);
+      }
+
+      /* value 확인하기 */
+      for (let value of formData.values()) {
+        console.log("value", value);
+      }
       apiEndpoint
         .post("/api/card/", formData)
         .then((response) => {

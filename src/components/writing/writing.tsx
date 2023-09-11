@@ -120,7 +120,7 @@ const Writing = () => {
               type="button"
               onClick={handlePostSubmit}
               isImageFileActivate={image !== null}
-              ButtonActivate={isFormValid}
+              isSubmitButtonActivate={isFormValid}
             >
               게시하기
             </S.SubmitBnt>
