@@ -21,7 +21,8 @@ export const NavTextWrap = styled.div`
 export const NavText = styled.div`
   color: white;
   font-family: "pretendard";
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: 600;
-  margin: 20px;
+  margin: 18px;
+  cursor: pointer;
 `;

@@ -4,6 +4,7 @@ import SigninPage from "../pages/signin.tsx";
 import WritingPage from "../pages/writing.tsx";
 import SignupPage from "../pages/signup.tsx";
 import ChatPage from "../pages/chat.tsx";
+import Counseling from "../pages/counseling.tsx";
 
 const Router = () => {
   return (
@@ -11,6 +12,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<SigninPage />} />
         <Route path="/writing" element={<WritingPage />} />
+        <Route path="/counseling" element={<Counseling />} />
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/signin" element={<SigninPage />} />
         <Route path="/signup" element={<SignupPage />} />
