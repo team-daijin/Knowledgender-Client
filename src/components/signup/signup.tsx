@@ -72,7 +72,7 @@ function Signup({ children }: React.PropsWithChildren) {
                 type="text"
                 onChange={onChange}
               ></S.Input>
-              <S.InputErrorText>동일한 아이디가 존재합니다</S.InputErrorText>
+              {/* <S.InputErrorText>동일한 아이디가 존재합니다</S.InputErrorText> */}
             </S.InputComponent>
             <S.InputComponent>
               <S.InputText>비밀번호</S.InputText>
