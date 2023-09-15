@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { WritingCardType } from "../types/writing/writing.type";
+import { CounselingType } from "../types/counseling/counseling.type";
 import apiEndpoint from "../api/customAxios";
 
 export const useWritingForm = () => {

@@ -24,6 +24,7 @@ const Writing = () => {
     isFormValid,
     handlePostSubmit,
   } = useWritingForm();
+  
   const { title, category, content, thumbnail, image } = postCardData;
 
   return (

@@ -4,11 +4,12 @@ interface ElementActiveProps {
   isShowLocationBntActivate: boolean;
   isSubmitButtonColorActivate: boolean;
   isSubmitButtonMarginActivate: boolean;
+  isSubmitButtonActivate: boolean;
+  isImageFileActivate: boolean;
 }
-
 export const WholeWritingPageContainer = styled.div`
   width: 100vw;
-  height: 113vh;
+  height: 160vh;
   background-color: #f2f2f2;
   overflow: hidden;
 `;
@@ -36,7 +37,7 @@ export const MainContentContainer = styled.div`
   margin-top: 3%;
 `;
 
-export const WritingItemTitle = styled.h5`
+export const WritingItemTitle = styled.div`
   color: #434244;
   font-family: "Pretendard";
   font-size: 105%;
@@ -51,8 +52,9 @@ export const InputTitleContentBox = styled.div`
 
 export const TitleInputPlace = styled.input`
   margin-top: 1%;
+  margin-bottom: 2%;
   padding-left: 1%;
-  width: 48.5%;
+  width: 30%;
   height: 48px;
   border-radius: 8px;
   border: 1px solid #d8dae0;
@@ -86,15 +88,13 @@ export const ShowLoactionMap = styled.div`
 `;
 export const SubmitBnt = styled.button<ElementActiveProps>`
   cursor: pointer;
-  position: absolute;
   border-radius: 5px;
   border: 1px solid #d8dae0;
   color: ${(props) => (props.isSubmitButtonColorActivate ? "white" : "gray")};
   font-family: "Pretendard";
   font-size: 100%;
   font-weight: 600;
-  margin-top: ${(props) =>
-    props.isSubmitButtonMarginActivate ? "2%" : "-30%"};
+  margin-left: 2%;
   padding: 15px 70px;
   background-color: ${(props) =>
     props.isSubmitButtonColorActivate ? "#6823c2" : "#f2f2f2"};
@@ -106,4 +106,50 @@ export const ErrorMessage = styled.p`
   font-size: 80%;
   font-weight: 400;
   margin-top: 1%;
+`;
+export const FileUploadButtonBox = styled.div`
+  margin-top: 2%;
+`;
+
+export const FileContentBoxLabel = styled.label<ElementActiveProps>`
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #d8dae0;
+  color: ${(props) => (props.isImageFileActivate ? "white" : "gray")};
+  font-family: "Pretendard";
+  font-size: 100%;
+  background-color: ${(props) =>
+    props.isImageFileActivate ? "#6823c2" : "#f2f2f2"};
+  padding: 10px;
+`;
+
+export const FileContentBoxInput = styled.input`
+  display: none;
+  width: 500px;
+`;
+
+export const MainContentTextareaContentBox = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+export const MainContenttWritingTextareaPlace = styled.textarea`
+  margin-top: -1%;
+  padding-left: 1%;
+  padding-top: 1%;
+  width: 85%;
+  height: 220px;
+  border-radius: 8px;
+  border: 1px solid #d8dae0;
+  background: #fff;
+  outline-color: #6823c2;
+  color: black;
+  font-family: "Pretendard";
+  font-size: 100%;
+  font-weight: 400;
+  resize: none;
+`;
+
+export const BannerInputPlace = styled.input`
+  display: none;
 `;

@@ -1,85 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import * as S from "./counseling.style";
 import { CounselingType } from "../../types/counseling/counseling.type";
+import api from "../../api/customAxios";
+import { UserCounseling } from "../../hooks/userCounseling";
 
 const Counseling = () => {
-  const [postLocation, setPostLocation] = useState<CounselingType>({
-    name: "",
-    introduce: "",
-    contact: "",
-    code: "",
-    location: {
-      address: "",
-      latitude: 0,
-      longitude: 0,
-    },
-  });
-  const { name, location } = postLocation;
-  const { address, latitude, longitude } = location;
+  const [imgFile, setImgFile] = useState("");
+  const imgRef = useRef();
+  const {
+    postLocation,
+    handleElementChange,
+    isFormValid,
+    handlePostLocationSubmit,
+    showCoordinates,
+  } = UserCounseling();
 
-  const handleElementChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-
-    setPostLocation((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-
-    setPostLocation((prevData) => ({
-      ...prevData,
-      location: {
-        ...prevData.location,
-        [name]: value,
-      },
-    }));
-  };
-
-  const showCoordinates = () => {
-    const { kakao }: any = window;
-    try {
-      const geocoder = new kakao.maps.services.Geocoder();
-      geocoder.addressSearch(address, (result: any, status: any) => {
-        if (status === kakao.maps.services.Status.OK) {
-          const { y: latitude, x: longitude } = result[0];
-          setPostLocation((prevData) => ({
-            ...prevData,
-            location: {
-              ...prevData.location,
-              address: address,
-              latitude: latitude,
-              longitude: longitude,
-            },
-          }));
-          alert(
-            "주소 변환이 정상적으로 이루어졌습니다.\n" +
-              `위도 : ${latitude}, 경도 : ${longitude}`
-          );
-
-          const container = document.getElementById("map");
-          const options = {
-            center: new kakao.maps.LatLng(latitude, longitude),
-            level: 2,
-          };
-          const map = new kakao.maps.Map(container, options);
-
-          const marker = new kakao.maps.Marker({
-            position: new kakao.maps.LatLng(latitude, longitude),
-            map: map,
-            title: name,
-          });
-        } else {
-          alert("주소 변환에 실패했습니다.");
-        }
-      });
-    } catch (error) {
-      console.error("Error Message:", error);
-      alert("주소 변환 중 오류가 발생했습니다.");
-    }
-  };
+  const { name, introduce, contact, image, address, latitude, longitude } =
+    postLocation;
 
   return (
     <S.WholeWritingPageContainer>
@@ -98,33 +35,68 @@ const Counseling = () => {
               value={name}
               onChange={handleElementChange}
             />
+            <S.WritingItemTitle>상담소 소개</S.WritingItemTitle>
+            <S.TitleInputPlace
+              placeholder="상담소 소개를 입력해주세요"
+              type="text"
+              name="introduce"
+              value={introduce}
+              onChange={handleElementChange}
+            />
+            <S.WritingItemTitle>전화번호</S.WritingItemTitle>
+            <S.TitleInputPlace
+              placeholder="전화번호를 입력해주세요"
+              type="text"
+              name="contact"
+              value={contact}
+              onChange={handleElementChange}
+            />
+            <S.WritingItemTitle>사진 첨부</S.WritingItemTitle>
+            <S.FileUploadButtonBox>
+              <S.FileContentBoxLabel
+                isImageFileActivate={image !== null}
+                isSubmitButtonActivate={isFormValid}
+              >
+                선택하기
+                <S.FileContentBoxInput
+                  type="file"
+                  name="image"
+                  accept=".jpg, .jpeg, .png"
+                  onChange={handleElementChange}
+                />
+              </S.FileContentBoxLabel>
+            </S.FileUploadButtonBox>
           </S.InputTitleContentBox>
+
           <S.InputTitleContentBox>
             <S.WritingItemTitle>주소</S.WritingItemTitle>
-            <S.TitleInputPlace
-              placeholder="상담소의 도로명 주소를 입력해주세요"
-              type="text"
-              name="address"
-              value={address}
-              onChange={handleLocationChange}
-            />
-            <S.ShowLocationBnt
-              type="button"
-              onClick={showCoordinates}
-              isShowLocationBntActivate={address !== ""}
-            >
-              주소찾기
-            </S.ShowLocationBnt>
+            <div>
+              <S.TitleInputPlace
+                placeholder="상담소의 도로명 주소를 입력해주세요"
+                type="text"
+                name="address"
+                value={address}
+                onChange={handleElementChange}
+              />
+              <S.ShowLocationBnt
+                type="button"
+                onClick={showCoordinates}
+                isShowLocationBntActivate={address !== ""}
+              >
+                주소찾기
+              </S.ShowLocationBnt>
+              <S.SubmitBnt
+                isSubmitButtonColorActivate={
+                  name !== "" && latitude !== 0 && longitude !== 0
+                }
+                isSubmitButtonMarginActivate={latitude !== 0 && longitude !== 0}
+                onClick={handlePostLocationSubmit}
+              >
+                등록하기
+              </S.SubmitBnt>
+            </div>
           </S.InputTitleContentBox>
           <S.ShowLoactionMap id="map"></S.ShowLoactionMap>
-          <S.SubmitBnt
-            isSubmitButtonColorActivate={
-              name !== "" && latitude !== 0 && longitude !== 0
-            }
-            isSubmitButtonMarginActivate={latitude !== 0 && longitude !== 0}
-          >
-            등록하기
-          </S.SubmitBnt>
         </S.MainContentContainer>
       </S.MainItemContainer>
     </S.WholeWritingPageContainer>

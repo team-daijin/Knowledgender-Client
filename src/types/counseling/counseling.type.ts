@@ -1,11 +1,10 @@
 export interface CounselingType {
   name: string;
+  image: File | null;
   introduce: string;
   contact: string;
   code: string;
-  location: {
-    address: string;
-    latitude: number;
-    longitude: number;
-  };
+  address: string;
+  latitude: number;
+  longitude: number;
 }
