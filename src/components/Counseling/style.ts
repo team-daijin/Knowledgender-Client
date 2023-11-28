@@ -1,23 +1,27 @@
 import styled from "styled-components";
 
 interface ElementActiveProps {
-  isShowLocationBntActivate: boolean;
-  isSubmitButtonColorActivate: boolean;
-  isSubmitButtonMarginActivate: boolean;
-  isSubmitButtonActivate: boolean;
-  isImageFileActivate: boolean;
+  isShowLocationBntActivate?: boolean;
+  isSubmitButtonColorActivate?: boolean;
+  isSubmitButtonMarginActivate?: boolean;
+  isSubmitButtonActivate?: boolean;
+  isImageFileActivate?: boolean;
 }
+
 export const WholeWritingPageContainer = styled.div`
   width: 100vw;
   height: 160vh;
   background-color: #f2f2f2;
   overflow: hidden;
 `;
+
 export const MainItemContainer = styled.div`
   margin-left: 10.5%;
   padding-top: 2%;
 `;
+
 export const TitleBox = styled.div``;
+
 export const Title1 = styled.p`
   color: #090a0a;
   font-family: "Pretendard";
@@ -25,6 +29,7 @@ export const Title1 = styled.p`
   font-weight: 700;
   margin-bottom: 0%;
 `;
+
 export const Title2 = styled.p`
   color: #303437;
   font-family: "Pretendard";
@@ -44,6 +49,7 @@ export const WritingItemTitle = styled.div`
   font-weight: 550;
   margin: 0;
 `;
+
 export const InputTitleContentBox = styled.div`
   width: 100%;
   height: 100%;
@@ -86,6 +92,7 @@ export const ShowLoactionMap = styled.div`
   margin-top: 2%;
   position: relative;
 `;
+
 export const SubmitBnt = styled.button<ElementActiveProps>`
   cursor: pointer;
   border-radius: 5px;
@@ -107,6 +114,7 @@ export const ErrorMessage = styled.p`
   font-weight: 400;
   margin-top: 1%;
 `;
+
 export const FileUploadButtonBox = styled.div`
   margin-top: 2%;
 `;

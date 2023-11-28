@@ -1,14 +1,14 @@
 import React from "react";
-import Chat from "../components/Chat";
 import Header from "../components/Common/Header";
+import MyPage from "../components/MyPage";
 
-function ChatPage() {
+function MyPagePath() {
   return (
     <>
       <Header />
-      <Chat />
+      <MyPage />
     </>
   );
 }
 
-export default ChatPage;
+export default MyPagePath;

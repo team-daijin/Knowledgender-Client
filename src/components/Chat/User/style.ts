@@ -1,24 +1,6 @@
-import React from "react";
 import styled from "styled-components";
-import logo from "../../../assets/image/signinImg.svg";
-function User() {
-  return (
-    <>
-      <UserWrap>
-        <UserImg src={logo} alt=""></UserImg>
-        <UserInfo>
-          <UserName>김예림</UserName>
-          <UserDetail>
-            <p>17세 | 여자</p>
-            <UserTag>관계</UserTag>
-          </UserDetail>
-        </UserInfo>
-      </UserWrap>
-    </>
-  );
-}
 
-const UserWrap = styled.div`
+export const UserWrap = styled.div`
   width: 20vw;
   height: 10vh;
 
@@ -35,7 +17,7 @@ const UserWrap = styled.div`
   }
 `;
 
-const UserDetail = styled.div`
+export const UserDetail = styled.div`
   display: flex;
   flex-direction: row;
 
@@ -49,7 +31,7 @@ const UserDetail = styled.div`
   }
 `;
 
-const UserTag = styled.div`
+export const UserTag = styled.div`
   width: 3vw;
   height: 2vh;
   display: flex;
@@ -68,24 +50,23 @@ const UserTag = styled.div`
   margin-left: 4vw;
 `;
 
-const UserName = styled.div`
+export const UserName = styled.div`
   font-family: Pretendard;
   font-size: 1.4rem;
   color: black;
   font-weight: 600;
 `;
 
-const UserImg = styled.img`
+export const UserImg = styled.img`
   border-radius: 100%;
   width: 4rem;
   height: 4rem;
 `;
 
-const UserInfo = styled.div`
+export const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 1vh;
   padding-bottom: 1vh;
   margin-left: 1vw;
 `;
-export default User;

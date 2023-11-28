@@ -1,10 +1,10 @@
 import React from "react";
 import * as S from "./signup.style.tsx";
-import Logo from "../../assets/image/signupLogo.svg";
-import Image from "../../assets/image/signinImg.svg";
+import Logo from "../../assets/Image/signupLogo.svg";
+import Image from "../../assets/Image/signinImg.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import api from "../../api/SigninCustomAxios.tsx";
+import api from "../../api/CustomAxios";
 enum job {
   DOCTER,
   COUNSELOR,
@@ -18,6 +18,8 @@ interface Register {
   name: String;
   job: job;
 }
+
+const { CustomAxios } = api();
 
 function Signup({ children }: React.PropsWithChildren) {
   const navigate = useNavigate();
@@ -35,13 +37,12 @@ function Signup({ children }: React.PropsWithChildren) {
   };
 
   const onSubmit = () => {
-    api
-      .post("/api/auth/export/register", {
-        accountId: register.accountId,
-        password: register.password,
-        name: register.name,
-        job: register.job,
-      })
+    CustomAxios.post("/api/auth/export/register", {
+      accountId: register.accountId,
+      password: register.password,
+      name: register.name,
+      job: register.job,
+    })
       .then((res: any) => {
         alert("회원가입에 성공하셨습니다 ");
         console.log(register);

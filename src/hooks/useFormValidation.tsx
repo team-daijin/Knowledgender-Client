@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { WritingCardType } from "../types/writing/writing.type";
-import { CounselingType } from "../types/counseling/counseling.type";
-import apiEndpoint from "../api/customAxios";
+import api from "../api/CustomAxios/index";
 
 export const useWritingForm = () => {
   const [postCardData, setPostCardData] = useState<WritingCardType>({
@@ -17,6 +16,8 @@ export const useWritingForm = () => {
     category: "",
     content: "",
   });
+
+  const { CustomAxios } = api();
 
   const handleElementChange = (
     event: React.ChangeEvent<
@@ -58,8 +59,7 @@ export const useWritingForm = () => {
       for (let value of formData.values()) {
         console.log("value", value);
       }
-      apiEndpoint
-        .post("/api/card/", formData)
+      CustomAxios.post("/api/card/", formData)
         .then((response) => {
           console.log(response);
           alert("작성 글 게시에 성공하셨습니다.");

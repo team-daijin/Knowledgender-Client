@@ -1,7 +1,7 @@
 import React from "react";
-import * as C from "./chat.style";
-import List from "./list/list";
-import Input from "./input/input";
+import * as C from "./style";
+import List from "./List";
+import Input from "./Input";
 
 function Chat() {
   return (

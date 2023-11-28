@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import * as S from "./signin.style.ts";
-import Image from "../../assets/image/signinImg.svg";
-import Logo from "../../assets/image/signinLogo.svg";
-import api from "../../api/SigninCustomAxios.tsx";
+import Image from "../../assets/Image/signinImg.svg";
+import Logo from "../../assets/Image/signinLogo.svg";
+import api from "../../api/CustomAxios";
 import { useNavigate } from "react-router-dom";
 
 interface User {
   accountId: String;
   password: String;
 }
+
+const { SigninCustomAxios } = api();
 
 function Signin({ children }: React.PropsWithChildren) {
   const navigate = useNavigate();
@@ -21,11 +23,10 @@ function Signin({ children }: React.PropsWithChildren) {
   const [errorMessage, setErrorMessage] = useState(false);
 
   const onSubmit = () => {
-    api
-      .post("/api/auth/login", {
-        accountId: user.accountId,
-        password: user.password,
-      })
+    SigninCustomAxios.post("/api/auth/login", {
+      accountId: user.accountId,
+      password: user.password,
+    })
       .then((res: any) => {
         handleTokenSave(res.data.accessToken);
       })
@@ -51,7 +52,7 @@ function Signin({ children }: React.PropsWithChildren) {
       <S.SigninPageWrap>
         <S.SigninWrap>
           <S.InputWrap>
-            <img src={Logo} alt="" height={"10%"}></img>
+            <img src={Logo} alt="error" height={"10%"}></img>
             <S.InputComponent>
               <S.InputText>아이디</S.InputText>
               <S.Input

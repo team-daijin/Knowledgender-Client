@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../components/common/header/header";
-import Counseling from "../components/counseling/counseling";
+import Header from "../components/Common/Header";
+import Counseling from "../components/Counseling";
 
 function CounselingPage() {
   return (

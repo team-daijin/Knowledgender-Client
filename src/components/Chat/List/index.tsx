@@ -1,24 +1,17 @@
 import React from "react";
-import styled from "styled-components";
-import User from "../user/user";
+import * as S from "./style";
+import User from "../User";
 function List() {
   const sample: Number[] = [1, 2, 3, 4, 5, 6];
   return (
     <>
-      <ListWrap>
+      <S.ListWrap>
         {sample.map((item: Number, index) => {
           return <User key={index} />;
         })}
-      </ListWrap>
+      </S.ListWrap>
     </>
   );
 }
-
-const ListWrap = styled.div`
-  width: 20vw;
-  height: 90vh;
-
-  background-color: white;
-`;
 
 export default List;

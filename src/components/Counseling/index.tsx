@@ -1,16 +1,12 @@
-import React, { useState, useRef } from "react";
-import * as S from "./counseling.style";
-import { CounselingType } from "../../types/counseling/counseling.type";
-import api from "../../api/customAxios";
+import React from "react";
+import * as S from "./style";
 import { UserCounseling } from "../../hooks/userCounseling";
 
 const Counseling = () => {
-  const [imgFile, setImgFile] = useState("");
-  const imgRef = useRef();
   const {
     postLocation,
-    handleElementChange,
     isFormValid,
+    handleElementChange,
     handlePostLocationSubmit,
     showCoordinates,
   } = UserCounseling();

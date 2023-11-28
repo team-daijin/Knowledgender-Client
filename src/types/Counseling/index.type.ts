@@ -7,4 +7,5 @@ export interface CounselingType {
   address: string;
   latitude: number;
   longitude: number;
+  [key: string]: string | File | null | number;
 }

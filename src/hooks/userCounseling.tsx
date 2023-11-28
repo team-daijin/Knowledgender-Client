@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { WritingCardType } from "../types/writing/writing.type";
 import { CounselingType } from "../types/counseling/counseling.type";
-import apiEndpoint from "../api/customAxios";
+import api from "../api/CustomAxios/index";
 
 export const UserCounseling = () => {
   const [postLocation, setPostLocation] = useState<CounselingType>({
@@ -14,6 +13,8 @@ export const UserCounseling = () => {
     latitude: 0,
     longitude: 0,
   });
+
+  const { CustomAxios } = api();
 
   const handleElementChange = (
     event: React.ChangeEvent<
@@ -51,8 +52,7 @@ export const UserCounseling = () => {
       for (let value of formData.values()) {
         console.log("value", value);
       }
-      apiEndpoint
-        .post("/api/clinic/", formData)
+      CustomAxios.post("/api/clinic/", formData)
         .then((response) => {
           console.log(response);
           alert("위치 게시에 성공하셨습니다.");
