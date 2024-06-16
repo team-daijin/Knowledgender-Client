@@ -48,6 +48,7 @@ export const SignupSubtitle = styled.div`
   font-family: "pretendard";
   font-weight: 400;
 `;
+
 export const InputWrap = styled.div`
   height: 70vh;
   width: 35vw;
@@ -66,7 +67,6 @@ export const Input = styled.input<InputProps>`
   outline: none;
   transition: border-color 0.2s;
   width: 20vw;
-  <height:3></height:3>vh;
   &:focus {
     border-color: #7b39d1;
   }
@@ -79,7 +79,7 @@ export const SigninButton = styled.button<ButtonProps>`
   border-style: none;
   cursor: pointer;
   transition: background-color 0.2s;
-  width: 21vw;
+  width: 22.6vw;
   height: 5vh;
 
   ${({ variant }) => {
@@ -142,7 +142,13 @@ export const InputComponent = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  margin-top: 5%;
 `;
+
+export const SelectComponent = styled.div`
+  display: flex;
+`;
+
 export const InputText = styled.div`
   font-family: "pretendard";
   color: #72777a; // 회색
@@ -158,12 +164,14 @@ export const ButtonWrap = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  margin-top: 5%;
 `;
 export const Select = styled.select`
   padding: 8px;
+  margin-right: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-  width: 200px;
+  width: 10.75vw;
   font-family: "pretendard";
 `;

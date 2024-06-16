@@ -1,7 +1,7 @@
 export interface WritingCardType {
   title: string;
   category: string;
-  content: string;
+  subTitle: string;
   thumbnail: File | null;
-  image: File | null;
+  content: File | null;
 }

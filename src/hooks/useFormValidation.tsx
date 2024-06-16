@@ -1,20 +1,20 @@
 import { useState } from "react";
-import { WritingCardType } from "../types/writing/writing.type";
+import { WritingCardType } from "../types/Writing/index.type";
 import api from "../api/CustomAxios/index";
 
 export const useWritingForm = () => {
   const [postCardData, setPostCardData] = useState<WritingCardType>({
     title: "",
     category: "",
-    content: "",
+    subTitle: "",
     thumbnail: null,
-    image: null,
+    content: null,
   });
 
   const [errorMessages, setErrorMessages] = useState({
     title: "",
     category: "",
-    content: "",
+    subTitle: "",
   });
 
   const { CustomAxios } = api();
@@ -26,7 +26,7 @@ export const useWritingForm = () => {
   ) => {
     const { name, value, files } = event.target;
 
-    setPostCardData((prevData) => ({
+    setPostCardData((prevData: any) => ({
       ...prevData,
       [name]: files ? files[0] : value,
     }));
@@ -35,7 +35,7 @@ export const useWritingForm = () => {
   let isFormValid =
     postCardData.title !== "" &&
     postCardData.category !== "" &&
-    postCardData.content !== "";
+    postCardData.subTitle !== "";
 
   const handlePostSubmit = () => {
     const formData = new FormData();
@@ -44,12 +44,12 @@ export const useWritingForm = () => {
     if (isFormValid) {
       formData.append("title", postCardData.title);
       formData.append("category", postCardData.category);
-      formData.append("content", postCardData.content);
+      formData.append("subTitle", postCardData.subTitle);
       if (postCardData.thumbnail instanceof File) {
         formData.append("thumbnail", postCardData.thumbnail);
       }
-      if (postCardData.image instanceof File) {
-        formData.append("image", postCardData.image);
+      if (postCardData.content instanceof File) {
+        formData.append("content", postCardData.content);
       }
       for (let key of formData.keys()) {
         console.log("key", key);
@@ -59,16 +59,16 @@ export const useWritingForm = () => {
       for (let value of formData.values()) {
         console.log("value", value);
       }
-      CustomAxios.post("/api/card/", formData)
+      CustomAxios.post("/card/", formData)
         .then((response) => {
           console.log(response);
           alert("작성 글 게시에 성공하셨습니다.");
           setPostCardData({
             title: "",
             category: "",
-            content: "",
+            subTitle: "",
             thumbnail: null,
-            image: null,
+            content: null,
           });
         })
         .catch((error) => {
@@ -83,8 +83,8 @@ export const useWritingForm = () => {
       if (postCardData.category === "") {
         newErrorMessages.category = "*카테고리를 선택해주세요*";
       }
-      if (postCardData.content === "") {
-        newErrorMessages.content = "*내용을 입력해주세요*";
+      if (postCardData.subTitle === "") {
+        newErrorMessages.subTitle = "*부제목을 입력해주세요*";
       }
 
       setErrorMessages(newErrorMessages);

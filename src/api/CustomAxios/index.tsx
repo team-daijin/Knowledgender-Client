@@ -4,11 +4,11 @@ const api = () => {
   const token = localStorage.getItem("accessToken");
 
   const SigninCustomAxios = axios.create({
-    baseURL: "http://52.78.246.108:8080",
+    baseURL: "http://algosipeosseong.site",
   });
 
   const CustomAxios = axios.create({
-    baseURL: "http://52.78.246.108:8080",
+    baseURL: "http://algosipeosseong.site",
     headers: {
       Authorization: `Bearer ${token}`,
     },

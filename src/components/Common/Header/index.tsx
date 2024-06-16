@@ -1,6 +1,6 @@
 import React from "react";
 import * as H from "./style";
-import logo from "../../../assets/Image/logo.svg";
+import logo from "../../../assets/image/logo.svg";
 import { useNavigate } from "react-router-dom";
 
 const navItems = [

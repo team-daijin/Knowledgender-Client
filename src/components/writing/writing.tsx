@@ -6,17 +6,15 @@ const Writing = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   });
-
   const validCategories = [
-    "카테고리를 선택해주세요",
-    "없음",
-    "마음",
-    "신체",
-    "범죄",
-    "관계",
-    "평등",
+    { label: "카테고리를 선택해주세요", value: "" },
+    { label: "없음", value: "NONE" },
+    { label: "마음", value: "HEART" },
+    { label: "신체", value: "BODY" },
+    { label: "범죄", value: "VIOLENCE" },
+    { label: "관계", value: "RELATION" },
+    { label: "평등", value: "EQUALITY" },
   ];
-
   const {
     postCardData,
     errorMessages,
@@ -24,8 +22,12 @@ const Writing = () => {
     isFormValid,
     handlePostSubmit,
   } = useWritingForm();
-  
-  const { title, category, content, thumbnail, image } = postCardData;
+
+  const { title, content, thumbnail, subTitle, category } = postCardData;
+
+  useEffect(() => {
+    console.log(postCardData);
+  }, [postCardData]);
 
   return (
     <S.WholeWritingPageContainer>
@@ -57,12 +59,13 @@ const Writing = () => {
                 name="category"
                 onChange={handleElementChange}
               >
-                {validCategories.map((category) => (
+                {validCategories.map((category, index) => (
                   <option
-                    key={category}
-                    disabled={category === "카테고리를 선택해주세요"}
+                    key={index}
+                    value={category.value}
+                    disabled={index === 0}
                   >
-                    {category}
+                    {category.label}
                   </option>
                 ))}
               </S.CategoriesSelectPlace>
@@ -90,13 +93,13 @@ const Writing = () => {
             <S.FileUploadButtonBox>
               <S.WritingItemTitle>자료첨부</S.WritingItemTitle>
               <S.FileContentBoxLabel
-                isImageFileActivate={image !== null}
+                isImageFileActivate={content !== null}
                 isSubmitButtonActivate={isFormValid}
               >
                 선택하기
                 <S.FileContentBoxInput
                   type="file"
-                  name="image"
+                  name="content"
                   accept=".jpg, .jpeg, .png"
                   onChange={handleElementChange}
                 />
@@ -105,22 +108,22 @@ const Writing = () => {
           </S.SelectiveElementsContiner>
 
           <S.MainContentTextareaContentBox>
-            <S.WritingItemTitle>글 내용</S.WritingItemTitle>
+            <S.WritingItemTitle>부제목</S.WritingItemTitle>
             <S.MainContenttWritingTextareaPlace
-              placeholder="게시 글 내용을 입력해주세요"
-              value={content}
-              name="content"
+              placeholder="콘텐츠를 설명하는 간단한 글을 작성해주세요"
+              value={subTitle}
+              name="subTitle"
               onChange={handleElementChange}
             />
-            {errorMessages.content && content === "" && (
-              <S.ErrorMessage>{errorMessages.content}</S.ErrorMessage>
+            {errorMessages.subTitle && subTitle === "" && (
+              <S.ErrorMessage>{errorMessages.subTitle}</S.ErrorMessage>
             )}
           </S.MainContentTextareaContentBox>
           <S.ButtonContentBox>
             <S.SubmitBnt
               type="button"
               onClick={handlePostSubmit}
-              isImageFileActivate={image !== null}
+              isImageFileActivate={subTitle !== null}
               isSubmitButtonActivate={isFormValid}
             >
               게시하기

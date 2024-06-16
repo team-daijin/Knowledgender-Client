@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import * as S from "./signin.style.ts";
-import Image from "../../assets/Image/signinImg.svg";
-import Logo from "../../assets/Image/signinLogo.svg";
+import Image from "../../assets/image/signinImg.svg";
+import Logo from "../../assets/image/signinLogo.svg";
 import api from "../../api/CustomAxios";
 import { useNavigate } from "react-router-dom";
 
 interface User {
-  accountId: String;
+  email: String;
   password: String;
 }
 
@@ -16,15 +16,15 @@ function Signin({ children }: React.PropsWithChildren) {
   const navigate = useNavigate();
 
   const [user, setUser] = useState<User>({
-    accountId: "",
+    email: "",
     password: "",
   });
 
   const [errorMessage, setErrorMessage] = useState(false);
 
   const onSubmit = () => {
-    SigninCustomAxios.post("/api/auth/login", {
-      accountId: user.accountId,
+    SigninCustomAxios.post("/auth/login", {
+      email: user.email,
       password: user.password,
     })
       .then((res: any) => {
@@ -54,12 +54,14 @@ function Signin({ children }: React.PropsWithChildren) {
           <S.InputWrap>
             <img src={Logo} alt="error" height={"10%"}></img>
             <S.InputComponent>
-              <S.InputText>아이디</S.InputText>
+              <S.InputText>이메일</S.InputText>
               <S.Input
-                placeholder="아이디를 입력해주세요"
-                name="accountId"
+                placeholder="이메일을 입력해주세요."
+                name="email"
                 type="text"
-                onChange={onChange}
+                onChange={(e) => {
+                  onChange(e);
+                }}
               ></S.Input>
               {errorMessage && (
                 <S.InputErrorText>
@@ -73,7 +75,9 @@ function Signin({ children }: React.PropsWithChildren) {
                 placeholder="비밀번호를 입력해주세요"
                 name="password"
                 type="password"
-                onChange={onChange}
+                onChange={(e) => {
+                  onChange(e);
+                }}
               ></S.Input>
               {errorMessage && (
                 <S.InputErrorText>
